@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ARKAN - Constructora</title>
+  <meta name="description" content="ARKAN Constructora - soluciones integrales en construcción" />
+  <style>
+    :root{
+      --azul-osc:#0f1e3f;
+      --azul-medio:#213a56;
+      --dorado:#cdaa80;
+      --marron:#997953;
+      --bg:#f7f7f8;
+      --maxw:1200px;
+      --radius:12px;
+      --ff-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--ff-sans);color:var(--azul-osc);background:linear-gradient(180deg,#ffffff 0%, #f3f6f8 100%)}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{background:linear-gradient(90deg,var(--azul-osc),var(--azul-medio));color:white;position:sticky;top:0;z-index:50;box-shadow:0 6px 18px rgba(15,30,63,0.12)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;width:56px;object-fit:contain;border-radius:50%;background:white;padding:6px}
+    .brand h1{font-size:20px;margin:0;font-weight:600;letter-spacing:2px}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{padding:8px 12px;border-radius:8px;font-weight:600;opacity:0.95}
+    nav a:hover{background:rgba(255,255,255,0.08)}
+    .cta{background:var(--dorado);color:var(--azul-osc);padding:8px 14px;border-radius:8px;font-weight:700}
+
+    /* Mobile menu */
+    .menu-toggle{display:none;background:none;border:0;color:white;font-size:22px}
+    @media(max-width:880px){
+      nav{display:none;position:absolute;right:18px;top:72px;background:linear-gradient(180deg,var(--azul-medio),var(--azul-osc));padding:14px;border-radius:10px}
+      .menu-toggle{display:block}
+      header.expanded nav{display:flex;flex-direction:column;min-width:200px}
+    }
+
+    /* Hero */
+    .hero{padding:64px 0 48px;display:grid;grid-template-columns:1fr 480px;gap:40px;align-items:center}
+    .hero .eyebrow{display:inline-block;background:rgba(255,255,255,0.06);padding:6px 10px;border-radius:8px;font-weight:700;color:var(--dorado);letter-spacing:1px}
+    .hero h2{font-size:40px;margin:18px 0 14px;color:var(--azul-osc)}
+    .hero p{margin:0 0 22px;color:#334155;line-height:1.5}
+    .hero .actions{display:flex;gap:12px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;font-weight:700}
+    .btn-primary{background:var(--azul-osc);color:white}
+    .btn-outline{border:2px solid var(--azul-osc);background:transparent;color:var(--azul-osc)}
+    .card-hero{background:linear-gradient(180deg, rgba(33,58,86,0.06), rgba(15,30,63,0.02));padding:22px;border-radius:14px;box-shadow:0 8px 24px rgba(15,30,63,0.06)}
+    .stat{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+    .stat .num{font-weight:800;font-size:22px;color:var(--azul-osc)}
+    .stat .lbl{font-size:13px;color:#546377}
+
+    /* Sections */
+    section{padding:48px 0}
+    .section-title{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+    .section-title h3{margin:0;font-size:22px}
+    .divider{height:6px;width:72px;background:var(--dorado);border-radius:6px}
+
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service{background:white;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(15,30,63,0.04)}
+    .service h4{margin:8px 0}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project{height:180px;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;position:relative}
+    .project .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent, rgba(15,30,63,0.6));display:flex;align-items:flex-end;padding:14px;color:white}
+
+    .about{display:flex;gap:24px;align-items:center}
+    .about .txt{flex:1}
+    .about .img{width:420px;height:260px;border-radius:12px;background:linear-gradient(180deg,var(--azul-medio),var(--azul-osc));display:flex;align-items:center;justify-content:center;color:var(--dorado);font-weight:700}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:20px}
+    .input,textarea,button{font-family:inherit}
+    .input,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #dbe6ef}
+    textarea{min-height:140px;resize:vertical}
+    .contact-card{background:white;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(15,30,63,0.06)}
+
+    footer{padding:28px 0;border-top:1px solid #e6edf4;background:linear-gradient(180deg,#f7f9fb,#ffffff)}
+    .footer-flex{display:flex;justify-content:space-between;align-items:center;gap:20px}
+
+    /* Responsive */
+    @media(max-width:1100px){
+      .hero{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .about{flex-direction:column}
+      .services-grid,.projects-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:600px){
+      .brand img{height:48px;width:48px}
+      .brand h1{font-size:18px}
+      .services-grid,.projects-grid{grid-template-columns:1fr}
+      .brand{gap:8px}
+    }
+
+  </style>
+</head>
+<body>
+  <header id="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- Replace logo-arkan.png with your logo file name in the same folder -->
+        <img src="logo-arkan.png" alt="ARKAN logo" id="logo">
+        <div>
+          <h1>ARKAN</h1>
+          <div style="font-size:12px;opacity:0.85">Constructora</div>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle">☰</button>
+
+      <nav id="mainNav">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto" class="cta">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div>
+        <span class="eyebrow">ARKAN • Construcción</span>
+        <h2>Proyectos de calidad, ejecución impecable.</h2>
+        <p>Diseñamos y construimos obras residenciales, comerciales e industriales con foco en seguridad, eficiencia y estética duradera. Más de 15 años de trayectoria y un equipo técnico especializado.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contacto">Solicita presupuesto</a>
+          <a class="btn btn-outline" href="#proyectos">Ver proyectos</a>
+        </div>
+      </div>
+
+      <aside class="card-hero">
+        <div class="stat"><div class="num">+150</div><div class="lbl">Proyectos completados</div></div>
+        <div class="stat"><div class="num">15+</div><div class="lbl">Años de experiencia</div></div>
+        <div class="stat"><div class="num">Equipo</div><div class="lbl">Arquitectos e ingenieros certificados</div></div>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="servicios">
+      <div class="section-title"><div class="divider"></div><h3>Servicios</h3></div>
+      <div class="services-grid">
+        <article class="service">
+          <h4>Obra civil y edificación</h4>
+          <p>Desde planificación hasta entrega llave en mano: obras residenciales y comerciales con controles de calidad en cada etapa.</p>
+        </article>
+        <article class="service">
+          <h4>Gestión de proyectos</h4>
+          <p>Planificación, presupuesto y dirección técnica para que los proyectos se completen a tiempo y dentro del costo estimado.</p>
+        </article>
+        <article class="service">
+          <h4>Rehabilitación y mantenimiento</h4>
+          <p>Intervenciones estructurales, mejoras energéticas y mantenimiento preventivo para edificios existentes.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="proyectos">
+      <div class="section-title"><div class="divider"></div><h3>Proyectos destacados</h3></div>
+      <div class="projects-grid">
+        <div class="project" style="background-image:url('https://images.unsplash.com/photo-1505842465776-3d1b8f7f6f6a?auto=format&fit=crop&w=1200&q=60')">
+          <div class="overlay"><div><strong>Residencial Sol</strong><div style="font-size:13px;opacity:0.9">Edificio multifamiliar</div></div></div>
+        </div>
+        <div class="project" style="background-image:url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1200&q=60')">
+          <div class="overlay"><div><strong>Centro Comercial Alfa</strong><div style="font-size:13px;opacity:0.9">Proyecto comercial</div></div></div>
+        </div>
+        <div class="project" style="background-image:url('https://images.unsplash.com/photo-1505691723518-36a1fb51a5d5?auto=format&fit=crop&w=1200&q=60')">
+          <div class="overlay"><div><strong>Nave Industrial Beta</strong><div style="font-size:13px;opacity:0.9">Instalación industrial</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="nosotros">
+      <div class="section-title"><div class="divider"></div><h3>Nosotros</h3></div>
+      <div class="about">
+        <div class="txt">
+          <p><strong>ARKAN</strong> es una constructora con un enfoque técnico y estético. Combinamos conocimiento estructural, gestión eficiente y diseño cuidado para entregar proyectos que perduran en el tiempo.</p>
+          <p>Nuestro equipo está formado por profesionales con experiencia en obra civil, arquitectura e ingeniería, comprometidos con la seguridad y la sostenibilidad.</p>
+        </div>
+        <div class="img">ARKAN</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contacto">
+      <div class="section-title"><div class="divider"></div><h3>Contacto</h3></div>
+      <div class="contact-grid">
+        <form class="contact-card" onsubmit="handleContact(event)">
+          <label class="lbl">Nombre</label>
+          <input class="input" name="name" placeholder="Tu nombre" required>
+          <label class="lbl">Email</label>
+          <input class="input" name="email" type="email" placeholder="tucorreo@ejemplo.com" required>
+          <label class="lbl">Mensaje</label>
+          <textarea name="message" placeholder="Cuéntanos sobre tu proyecto" required></textarea>
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <div style="font-size:13px;color:#617285">O llama: +34 600 000 000</div>
+          </div>
+        </form>
+
+        <aside class="contact-card">
+          <h4>Oficina central</h4>
+          <p>Calle Ejemplo 123, Ciudad</p>
+          <p>Email: info@arkan.com</p>
+          <p>Tel: +34 600 000 000</p>
+          <div style="margin-top:10px">
+            <strong>Síguenos</strong>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <a href="#">LinkedIn</a>
+              <a href="#">Instagram</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-flex">
+      <div style="display:flex;gap:12px;align-items:center">
+        <img src="logo-arkan.png" alt="logo" style="height:48px;width:48px;border-radius:50%;background:white;padding:6px">
+        <div>
+          <div style="font-weight:700">ARKAN</div>
+          <div style="font-size:13px;color:#556677">Construcción • Calidad • Confianza</div>
+        </div>
+      </div>
+      <div style="font-size:14px;color:#5b6d80">© ARKAN 2025 • Todos los derechos reservados</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const header = document.getElementById('site-header');
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle.addEventListener('click', ()=>{ header.classList.toggle('expanded') });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+          header.classList.remove('expanded');
+        }
+      })
+    })
+
+    // Simple contact form handler (demo)
+    function handleContact(e){
+      e.preventDefault();
+      const f = e.currentTarget;
+      const data = {
+        name: f.name.value.trim(),
+        email: f.email.value.trim(),
+        message: f.message.value.trim()
+      };
+      if(!data.name || !data.email) return alert('Completa nombre y email');
+      // Aquí normalmente enviarás a tu backend o a un servicio (Formspree, Netlify Forms, etc.)
+      console.log('Contacto enviado', data);
+      alert('Gracias — tu mensaje ha sido recibido.');
+      f.reset();
+    }
+  </script>
+</body>
+</html>
